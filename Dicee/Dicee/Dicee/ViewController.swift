@@ -26,9 +26,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        
         updateDiceImages()
-
     }
     
     //it will update dice images follow by random number created
@@ -40,6 +38,12 @@ class ViewController: UIViewController {
         //display correct dice image based on the random number generated
         diceImageView1.image = UIImage(named: diceArray[randomDiceIndex1])
         diceImageView2.image = UIImage(named: diceArray[randomDiceIndex2])
+        
+    }
+    
+    //when the device is shaken, then it calls updateDiceImages function
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        updateDiceImages()
         
     }
     
