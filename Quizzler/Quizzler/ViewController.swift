@@ -23,10 +23,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstQuestion = allQuestions.list[0]
-        questionLabel.text = firstQuestion.questionText
-
         
+        nextQuestion()
     }
 
     @IBAction func answerPressed(_ sender: AnyObject) {
@@ -39,6 +37,7 @@ class ViewController: UIViewController {
         }
         checkAnswer()
         questionNumber = questionNumber + 1
+        nextQuestion()
   
     }
     
@@ -54,7 +53,14 @@ class ViewController: UIViewController {
          questionLabel.text = allQuestions.list[questionNumber].questionText
         }
         else {
+            let alert = UIAlertController(title: "Awesome", message: "Well done, do you want to start over?", preferredStyle: .alert)
             
+            let restartAction = UIAlertAction(title: "Restart", style: .default, handler: {(UIAlertAction) in
+                self.startOver()
+            })
+            
+            alert.addAction(restartAction)
+            present(alert, animated: true, completion:nil)
         }
         
     }
@@ -75,6 +81,9 @@ class ViewController: UIViewController {
     
     
     func startOver() {
+        
+        questionNumber = 0
+        nextQuestion()
        
     }
     
